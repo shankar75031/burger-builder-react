@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../../UI/Button/Button";
 
 export default function OrderSummary(props) {
   const ingredientSummary = Object.keys(props.ingredients).map((igKey) => {
@@ -15,8 +16,12 @@ export default function OrderSummary(props) {
       <p>A delicious burger with the following ingredients:</p>
       <ul>{ingredientSummary}</ul>
       <p>Continue to checkout?</p>
-      <button>CANCEL</button>
-      <button>CONTINUE</button>
+      <Button buttonType="Danger" clicked={props.purchaseCancelled}>
+        CANCEL
+      </Button>
+      <Button buttonType="Success" clicked={props.purchaseContinued}>
+        CONTINUE
+      </Button>
     </React.Fragment>
   );
 }
