@@ -13,7 +13,12 @@ export default function BuildControls(props) {
   return (
     <div className={classes.BuildControls}>
       {controls.map((control) => (
-        <BuildControl key={control.label} label={control.label} />
+        <BuildControl
+          key={control.label}
+          label={control.label}
+          type={control.type}
+          ingredientAdded={() => props.ingredientAdded(control.type)}
+        />
       ))}
     </div>
   );
