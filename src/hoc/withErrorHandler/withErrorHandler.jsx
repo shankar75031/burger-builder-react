@@ -3,34 +3,33 @@ import Modal from "../../components/UI/Modal/Modal";
 
 const withErrorHandler = (WrappedComponent, axios) => {
   return class extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        error: null,
-      };
-    }
+    state = {
+      error: null,
+    };
 
     UNSAFE_componentWillMount() {
-      axios.interceptors.request.use((req) => {
+      this.reqInterceptor = axios.interceptors.request.use((req) => {
         this.setState({ error: null });
         return req;
       });
-      axios.interceptors.response.use(
+      this.resInterceptor = axios.interceptors.response.use(
         (res) => res,
         (err) => {
-          console.log(err);
           this.setState({ error: err });
         }
       );
     }
 
+    componentWillUnmount() {
+      axios.interceptors.request.eject(this.reqInterceptor);
+      axios.interceptors.request.eject(this.resInterceptor);
+    }
+
     errorConfirmedHandler = () => {
-      console.log("INSIDE errorconfirmedHandler");
       this.setState({ error: null });
     };
 
     render() {
-      console.log("RENDERING ERROR HANDLER");
       return (
         <React.Fragment>
           <Modal

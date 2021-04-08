@@ -3,7 +3,6 @@ import Button from "../../UI/Button/Button";
 
 export default class OrderSummary extends Component {
   render() {
-    console.log("RENDER CALL");
     const ingredientSummary = Object.keys(this.props.ingredients).map(
       (igKey) => {
         return (
