@@ -108,7 +108,7 @@ export default class ContactData extends Component {
           return (
             <Input
               key={formElement.id}
-              elementType={formElement.config.elementType}
+              inputtype={formElement.config.elementType}
               elementConfig={formElement.config.elementConfig}
               value={formElement.config.value}
             />

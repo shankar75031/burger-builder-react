@@ -21,6 +21,18 @@ export default function Input(props) {
           className={classes.InputElement}
         />
       );
+      break;
+
+    case "select":
+      inputElement = (
+        <select value={props.value} className={classes.InputElement}>
+          {props.elementConfig.options.map((option) => {
+            return <option value={option.value}>{option.displayValue}</option>;
+          })}
+        </select>
+      );
+      break;
+
     default:
       inputElement = (
         <input
