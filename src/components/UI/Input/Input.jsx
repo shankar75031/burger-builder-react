@@ -7,6 +7,7 @@ export default function Input(props) {
     case "input":
       inputElement = (
         <input
+          onChange={props.changed}
           className={classes.InputElement}
           {...props.elementConfig}
           value={props.value}
@@ -16,6 +17,7 @@ export default function Input(props) {
     case "textarea":
       inputElement = (
         <textarea
+          onChange={props.changed}
           {...props.elementConfig}
           value={props.value}
           className={classes.InputElement}
@@ -25,7 +27,11 @@ export default function Input(props) {
 
     case "select":
       inputElement = (
-        <select value={props.value} className={classes.InputElement}>
+        <select
+          onChange={props.changed}
+          value={props.value}
+          className={classes.InputElement}
+        >
           {props.elementConfig.options.map((option) => {
             return (
               <option key={option.value} value={option.value}>
@@ -40,6 +46,7 @@ export default function Input(props) {
     default:
       inputElement = (
         <input
+          onChange={props.changed}
           {...props.elementConfig}
           value={props.value}
           className={classes.InputElement}
