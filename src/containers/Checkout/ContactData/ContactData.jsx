@@ -165,6 +165,8 @@ export default class ContactData extends Component {
           return (
             <Input
               key={formElement.id}
+              shouldValidate={formElement.config.validation}
+              invalid={!formElement.config.valid}
               inputtype={formElement.config.elementType}
               elementConfig={formElement.config.elementConfig}
               value={formElement.config.value}
