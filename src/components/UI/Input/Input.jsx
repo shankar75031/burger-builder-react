@@ -5,12 +5,30 @@ export default function Input(props) {
   let inputElement = null;
   switch (props.inputtype) {
     case "input":
-      inputElement = <input className={classes.InputElement} {...props} />;
+      inputElement = (
+        <input
+          className={classes.InputElement}
+          {...props.elementConfig}
+          value={props.value}
+        />
+      );
       break;
     case "textarea":
-      inputElement = <textarea {...props} className={classes.InputElement} />;
+      inputElement = (
+        <textarea
+          {...props.elementConfig}
+          value={props.value}
+          className={classes.InputElement}
+        />
+      );
     default:
-      inputElement = <input {...props} className={classes.InputElement} />;
+      inputElement = (
+        <input
+          {...props.elementConfig}
+          value={props.value}
+          className={classes.InputElement}
+        />
+      );
       break;
   }
   return (
