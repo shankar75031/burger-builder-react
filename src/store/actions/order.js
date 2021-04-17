@@ -71,7 +71,6 @@ export const fetchOrders = () => {
         for (const key in res.data) {
           fetchedOrders.push({ ...res.data[key], id: key });
         }
-        console.log("SUCCESS");
         dispatch(fetchOrdersSuccess(fetchedOrders));
       })
       .catch((err) => {
