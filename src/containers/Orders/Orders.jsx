@@ -1,45 +1,54 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import axiosInstance from "../../axios-orders";
 import Order from "../../components/Order/Order/Order";
+import Spinner from "../../components/UI/Spinner/Spinner";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
+import * as actions from "../../store/actions/index";
 
 class Orders extends Component {
-  state = {
-    orders: [],
-    loading: true,
-  };
   componentDidMount() {
-    axiosInstance
-      .get("/orders.json")
-      .then((res) => {
-        const fetchedOrders = [];
-        for (const key in res.data) {
-          fetchedOrders.push({ ...res.data[key], id: key });
-        }
-        this.setState({ orders: fetchedOrders, loading: false });
-      })
-      .catch((err) => {
-        this.setState({ loading: false });
-        console.log(err);
-      });
+    this.props.onFetchOrders();
   }
 
   render() {
-    console.log(this.state.orders);
-    return (
-      <div>
-        {this.state.orders.map((order) => {
-          return (
-            <Order
-              key={order.id}
-              ingredients={order.ingredients}
-              price={order.price}
-            />
-          );
-        })}
-      </div>
-    );
+    console.log(this.props.orders);
+    let orders = <Spinner />;
+    if (!this.props.loading) {
+      orders = (
+        <div>
+          {this.props.orders.map((order) => {
+            return (
+              <Order
+                key={order.id}
+                ingredients={order.ingredients}
+                price={order.price}
+              />
+            );
+          })}
+        </div>
+      );
+    }
+    return orders;
   }
 }
 
-export default withErrorHandler(Orders, axiosInstance);
+const mapStateToProps = (state) => {
+  return {
+    orders: state.order.orders,
+    loading: state.order.loading,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onFetchOrders: () => {
+      dispatch(actions.fetchOrders());
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withErrorHandler(Orders, axiosInstance));
