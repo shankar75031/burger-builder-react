@@ -26,7 +26,6 @@ export default function Input(props) {
           onChange={props.changed}
           {...props.elementConfig}
           value={props.value}
-          className={classes.InputElement}
         />
       );
       break;
@@ -37,7 +36,6 @@ export default function Input(props) {
           className={inputClasses.join(" ")}
           onChange={props.changed}
           value={props.value}
-          className={classes.InputElement}
         >
           {props.elementConfig.options.map((option) => {
             return (
