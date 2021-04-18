@@ -41,7 +41,6 @@ export const purchaseInit = () => {
 };
 
 export const fetchOrdersSuccess = (orders) => {
-  console.log(orders);
   return {
     type: actionTypes.FETCH_ORDERS_SUCCESS,
     orders: orders,
@@ -75,7 +74,6 @@ export const fetchOrders = (token, userId) => {
         dispatch(fetchOrdersSuccess(fetchedOrders));
       })
       .catch((err) => {
-        console.log(err);
         dispatch(fetchOrdersFail(err));
       });
   };

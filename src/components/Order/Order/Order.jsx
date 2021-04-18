@@ -4,7 +4,6 @@ import classes from "./Order.module.css";
 export default function Order(props) {
   const ingredients = [];
   for (const ingredientName in props.ingredients) {
-    const element = props.ingredients[ingredientName];
     ingredients.push({
       name: ingredientName,
       amount: props.ingredients[ingredientName],
