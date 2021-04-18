@@ -89,11 +89,9 @@ class Auth extends Component {
   };
 
   render() {
-    console.log(process.env.REACT_APP_FIREBASE_API_KEY);
     const formElementsArray = [];
     for (const key in this.state.controls) {
       const element = this.state.controls[key];
-      console.log(element);
       formElementsArray.push({
         id: key,
         config: element,
