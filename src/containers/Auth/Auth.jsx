@@ -80,6 +80,7 @@ class Auth extends Component {
   };
 
   render() {
+    console.log(process.env.REACT_APP_FIREBASE_API_KEY);
     const formElementsArray = [];
     for (const key in this.state.controls) {
       const element = this.state.controls[key];
@@ -89,7 +90,6 @@ class Auth extends Component {
         config: element,
       });
     }
-    console.log(formElementsArray);
 
     const form = formElementsArray.map((formElement) => {
       return (
