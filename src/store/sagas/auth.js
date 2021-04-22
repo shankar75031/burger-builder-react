@@ -3,12 +3,12 @@ import * as actions from "../actions/index";
 import axios from "axios";
 
 // Function* is a generator function
-export function* logoutSaga(action) {
+export function* logoutSaga() {
   // yield step will execute completely before going to next one
   //   Using call will make the generators more testable
-  yield call([localStorage, "removeItem", "token"]);
-  yield call([localStorage, "removeItem", "expirationDate"]);
-  yield call([localStorage, "removeItem", "userId"]);
+  yield call([localStorage, "removeItem"], "token");
+  yield call([localStorage, "removeItem"], "expirationDate");
+  yield call([localStorage, "removeItem"], "userId");
   // put() dispatches a new action
   yield put(actions.logoutSucceed());
 }
