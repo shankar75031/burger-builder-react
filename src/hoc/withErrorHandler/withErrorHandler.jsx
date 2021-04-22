@@ -12,27 +12,20 @@ const withErrorHandler = (WrappedComponent, axios) => {
 
     const resInterceptor = axios.interceptors.response.use(
       (res) => res,
-      (err) => {
-        console.log("MESSAGE", err.message);
-        setError(err);
+      (e) => {
+        console.log("MESSAGE", e.message);
+        setError(e);
       }
     );
 
     useEffect(() => {
-      if (error) {
-        console.log("BLAH BLAH ERROR", error.message);
-      } else {
-        console.log("NO ERROR SET");
-      }
-    }, [error]);
-
-    useEffect(() => {
+      console.log("USE EFFECT");
       return () => {
-        console.log("USE EFF");
+        console.log("USE EFFECT CLEANUP");
         axios.interceptors.request.eject(reqInterceptor);
         axios.interceptors.response.eject(resInterceptor);
       };
-    }, [reqInterceptor, resInterceptor]);
+    }, []);
 
     const errorConfirmedHandler = () => {
       setError(null);
