@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Redirect, Route, withRouter } from "react-router";
 import CheckoutSummary from "../../components/Order/CheckoutSummary/CheckoutSummary";
