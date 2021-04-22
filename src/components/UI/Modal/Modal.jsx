@@ -3,19 +3,14 @@ import Backdrop from "../Backdrop/Backdrop";
 import classes from "./Modal.module.css";
 
 class Modal extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log("MODAL SHOW");
-    console.log(this.props.show);
-    console.log(this.props.children);
-    return (
-      nextProps.show !== this.props.show ||
-      nextProps.children !== this.props.children
-    );
+  constructor(props) {
+    super(props);
+    console.log("PROPS", props);
   }
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <Backdrop show={this.props.show} clicked={this.props.modalClosed} />
         <div
           className={classes.Modal}
@@ -26,7 +21,7 @@ class Modal extends Component {
         >
           {this.props.children}
         </div>
-      </React.Fragment>
+      </>
     );
   }
 }

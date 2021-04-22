@@ -2,24 +2,35 @@ import React, { useEffect, useState } from "react";
 import Modal from "../../components/UI/Modal/Modal";
 
 const withErrorHandler = (WrappedComponent, axios) => {
-  return (props) => {
+  return function Test(props) {
     const [error, setError] = useState(null);
 
     const reqInterceptor = axios.interceptors.request.use((req) => {
       setError(null);
       return req;
     });
+
     const resInterceptor = axios.interceptors.response.use(
       (res) => res,
       (err) => {
+        console.log("MESSAGE", err.message);
         setError(err);
       }
     );
 
     useEffect(() => {
+      if (error) {
+        console.log("BLAH BLAH ERROR", error.message);
+      } else {
+        console.log("NO ERROR SET");
+      }
+    }, [error]);
+
+    useEffect(() => {
       return () => {
+        console.log("USE EFF");
         axios.interceptors.request.eject(reqInterceptor);
-        axios.interceptors.request.eject(resInterceptor);
+        axios.interceptors.response.eject(resInterceptor);
       };
     }, [reqInterceptor, resInterceptor]);
 
