@@ -9,7 +9,7 @@ import * as actions from "../../store/actions/index";
 const Orders = (props) => {
   useEffect(() => {
     props.onFetchOrders(props.token, props.userId);
-  }, []);
+  }, [props]);
 
   let orders = <Spinner />;
   if (!props.loading) {
