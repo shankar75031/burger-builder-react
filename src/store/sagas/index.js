@@ -25,8 +25,6 @@ export function* watchBurgerBuilder() {
 
 export function* watchOrder() {
   // takeLatest will cancel any ongoing executions of purchaseBurgerSaga/fetchOrdersSaga and execute only the latest one
-  yield takeLatest([
-    takeEvery(actionTypes.PURCHASE_BURGER, purchaseBurgerSaga),
-    takeEvery(actionTypes.FETCH_ORDERS, fetchOrdersSaga),
-  ]);
+  yield takeLatest(actionTypes.PURCHASE_BURGER, purchaseBurgerSaga);
+  yield takeLatest(actionTypes.FETCH_ORDERS, fetchOrdersSaga);
 }

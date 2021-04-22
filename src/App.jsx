@@ -14,7 +14,7 @@ const Orders = React.lazy(() => import("./containers/Orders/Orders"));
 const App = (props) => {
   useEffect(() => {
     props.onTryAutoSignup();
-  }, []);
+  }, [props]);
 
   let routes = (
     <Switch>

@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
 import Toolbar from "../../components/Navigation/Toolbar/Toolbar";
